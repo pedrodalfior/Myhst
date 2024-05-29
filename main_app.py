@@ -57,7 +57,7 @@ class AlimentacaoApp:
         self.btn_proxima_semana["highlightthickness"] = 0
 
     def registrar_alimentacao(self):
-        data = self.cal_data.get_date(date_pattern="yyyy-mm-dd")
+        data = self.cal_data.get_date()
         alimentacao = self.txt_alimentacao.get("1.0", tk.END).strip()
 
         if not alimentacao:
@@ -90,9 +90,7 @@ class AlimentacaoApp:
 
         if registros:
             for data, alimentacao in registros:
-                # Formatar a data para exibir no formato desejado
-                data_formatada = datetime.strptime(data, "%Y-%m-%d").strftime("%Y/%m/%d")
-                
+                data_formatada = datetime.strptime(data, "%Y-%m-%d").strftime("%d/%m/%Y")
                 lbl_data = tk.Label(formulario, text=f"Data: {data_formatada}", bg="white", fg="#2c3e50", font=("Arial", 12))
                 lbl_data.pack()
                 txt_alimentacao = tk.Text(formulario, height=5, width=40)
