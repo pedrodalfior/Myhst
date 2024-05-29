@@ -62,7 +62,8 @@ class LoginApp:
 
         if usuario_encontrado:
             messagebox.showinfo("Sucesso", "Login realizado com sucesso!")
-            main_app.main()
+            self.master.destroy() 
+            main_app.main() 
             
         else:
             messagebox.showerror("Erro", "Nome de usuário ou senha incorretos.")
