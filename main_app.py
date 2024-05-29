@@ -3,13 +3,14 @@ from tkinter import messagebox
 from tkcalendar import DateEntry
 import sqlite3
 from datetime import datetime, timedelta
+import customtkinter as ctk
 
 class AlimentacaoApp:
     def __init__(self, master):
         self.master = master
         self.master.title("Myhst - Seu sistema inteligente!")
         self.master.geometry("345x400")
-        self.master.configure(bg="white")
+        self.master.configure(bg="#f0f0f0")
         
         self.conectar_banco()
         self.criar_tabela()
@@ -28,33 +29,26 @@ class AlimentacaoApp:
         self.conn.commit()
 
     def criar_widgets(self):
-        self.lbl_myhst = tk.Label(self.master, text="Myhst", bg="white", fg="#2c3e50", font=("Arial", 20))
-        self.lbl_myhst.grid(row=0, column=0, columnspan=2, padx=5, pady=5)
+        self.lbl_myhst = tk.Label(self.master, text="Myhst", bg="#f0f0f0", fg="#2c3e50", font=("Arial", 20))
+        self.lbl_myhst.pack(pady=10)
 
-        self.lbl_data = tk.Label(self.master, text="Selecione a data:", bg="white", fg="#2c3e50", font=("Arial", 12))
-        self.lbl_data.grid(row=1, column=0, padx=10, pady=10)
+        self.lbl_data = tk.Label(self.master, text="Selecione a data:", bg="#f0f0f0", fg="#2c3e50", font=("Arial", 12))
+        self.lbl_data.pack(pady=5)
 
         self.cal_data = DateEntry(self.master, width=12, background='#2c3e50', foreground='white', borderwidth=2)
-        self.cal_data.grid(row=1, column=1, padx=10, pady=5)
+        self.cal_data.pack(pady=5)
 
-        self.lbl_info = tk.Label(self.master, text="Insira sua alimentação:", bg="white", fg="#2c3e50", font=("Arial", 12))
-        self.lbl_info.grid(row=2, column=0, columnspan=2, padx=10, pady=5)
+        self.lbl_info = tk.Label(self.master, text="Insira sua alimentação:", bg="#f0f0f0", fg="#2c3e50", font=("Arial", 12))
+        self.lbl_info.pack(pady=5)
 
         self.txt_alimentacao = tk.Text(self.master, height=5, width=40)
-        self.txt_alimentacao.grid(row=3, column=0, columnspan=2, padx=10, pady=5)
+        self.txt_alimentacao.pack(pady=5)
 
-        self.btn_registrar = tk.Button(self.master, text="Registrar", command=self.registrar_alimentacao, bg="#2c3e50", fg="white", font=("Arial", 12), relief=tk.FLAT, bd=0, padx=10, pady=5, borderwidth=0, highlightthickness=0)
-        self.btn_registrar.grid(row=4, column=0, padx=5, pady=5, columnspan=2, sticky="ew")
+        self.btn_registrar = ctk.CTkButton(self.master, text="Registrar", command=self.registrar_alimentacao, corner_radius=5)
+        self.btn_registrar.pack(pady=10)
 
-        self.btn_proxima_semana = tk.Button(self.master, text="Verificar Semana", command=self.verificar_semana, bg="#2c3e50", fg="white", font=("Arial", 12), relief=tk.FLAT, bd=0, padx=10, pady=5, borderwidth=0, highlightthickness=0)
-        self.btn_proxima_semana.grid(row=5, column=0, padx=5, pady=5, columnspan=2, sticky="ew")
-
-        self.btn_registrar["borderwidth"] = 2
-        self.btn_proxima_semana["borderwidth"] = 2
-        self.btn_registrar["relief"] = "groove"
-        self.btn_proxima_semana["relief"] = "groove"
-        self.btn_registrar["highlightthickness"] = 0
-        self.btn_proxima_semana["highlightthickness"] = 0
+        self.btn_proxima_semana = ctk.CTkButton(self.master, text="Verificar Semana", command=self.verificar_semana, corner_radius=5)
+        self.btn_proxima_semana.pack(pady=10)
 
     def registrar_alimentacao(self):
         data = self.cal_data.get_date()
@@ -91,19 +85,19 @@ class AlimentacaoApp:
         if registros:
             for data, alimentacao in registros:
                 data_formatada = datetime.strptime(data, "%Y-%m-%d").strftime("%d/%m/%Y")
-                lbl_data = tk.Label(formulario, text=f"Data: {data_formatada}", bg="white", fg="#2c3e50", font=("Arial", 12))
+                lbl_data = tk.Label(formulario, text=f"Data: {data_formatada}", bg="#f0f0f0", fg="#2c3e50", font=("Arial", 12))
                 lbl_data.pack()
                 txt_alimentacao = tk.Text(formulario, height=5, width=40)
                 txt_alimentacao.insert(tk.END, alimentacao)
                 txt_alimentacao.pack()
         else:
-            lbl_aviso = tk.Label(formulario, text="Não há registros para esta semana.", bg="white", fg="#2c3e50", font=("Arial", 12))
+            lbl_aviso = tk.Label(formulario, text="Não há registros para esta semana.", bg="#f0f0f0", fg="#2c3e50", font=("Arial", 12))
             lbl_aviso.pack()
 
 
 def main():
     root = tk.Tk()
-    root.configure(bg="white")
+    root.configure(bg="#f0f0f0")
     app = AlimentacaoApp(root)
     root.mainloop()
 
