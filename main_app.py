@@ -11,7 +11,7 @@ class AlimentacaoApp:
         self.master.title("DUDU - Seu sistema inteligente!")
         self.master.geometry("345x400")
         self.master.configure(bg="#f0f0f0")
-        self.master.iconbitmap("imagem/azul.ico")
+
         
         self.conectar_banco()
         self.criar_tabela()
