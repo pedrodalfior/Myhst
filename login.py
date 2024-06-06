@@ -11,7 +11,7 @@ class LoginApp:
         self.master.minsize(300, 200) 
         self.master.maxsize(300, 200)  
         self.master.configure(bg="white")
-        self.master.iconbitmap("imagem/azul.ico")
+
         
         self.conectar_banco()
         self.criar_tabela_usuarios()
