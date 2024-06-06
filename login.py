@@ -6,16 +6,18 @@ import main_app
 class LoginApp:
     def __init__(self, master):
         self.master = master
-        self.master.title("Myhst")
+        self.master.title("DUDU")
         self.master.geometry("300x200")
         self.master.minsize(300, 200) 
         self.master.maxsize(300, 200)  
         self.master.configure(bg="white")
+        self.master.iconbitmap("imagem/azul.ico")
         
         self.conectar_banco()
         self.criar_tabela_usuarios()
         
         self.criar_widgets()
+        
 
     def conectar_banco(self):
         try:
